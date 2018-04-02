@@ -5,6 +5,7 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 using Discord.Commands;
+using System.Reflection;
 
 namespace DougBot
 {
@@ -13,15 +14,22 @@ namespace DougBot
         public static void Main(string[] args)
             => new Program().Start().GetAwaiter().GetResult();
 
+        private DiscordSocketClient client;
+        private CommandService commands;
+
         public async Task Start()
         {
-            // Create the client object, set up logging and receiving messages
-            DiscordSocketClient client = new DiscordSocketClient(new DiscordSocketConfig()
+            // Create private objects client object
+            client = new DiscordSocketClient(new DiscordSocketConfig()
             {
                 WebSocketProvider = WS4NetProvider.Instance
             });
+            commands = new CommandService();
+
+            // Set up logging and command handling
             client.Log += Log;
-            client.MessageReceived += Message;
+            client.MessageReceived += HandleCommand;
+            await commands.AddModulesAsync(Assembly.GetEntryAssembly());
 
             // Login and start client using token from file
             string token = GetToken();
@@ -31,7 +39,6 @@ namespace DougBot
             // Wait until program end
             while (true)
             {
-                Console.Write(" > ");
                 string cmd = Console.ReadLine();
                 if (cmd.ToLower().Equals("quit") || cmd.ToLower().Equals("exit"))
                     break;
@@ -39,13 +46,34 @@ namespace DougBot
             await client.StopAsync();
             await client.LogoutAsync();
         }
-
-        private async Task Message(SocketMessage message)
+        
+        private async Task HandleCommand(SocketMessage messageParam)
         {
-            if (message.Content.Equals("!ping"))
+            // Make sure the message came from another user
+            SocketUserMessage message = messageParam as SocketUserMessage;
+            if (message == null)
+                return;
+
+            // A number to track the end of the prefix
+            int argPos = 0;
+            
+            // If the user just pings the bot with no message body, ping them back
+            if (message.Content.Substring(2).Equals(client.CurrentUser.Mention.Substring(3)))
             {
-                await message.Channel.SendMessageAsync("Pong!");
+                await message.Channel.SendMessageAsync(message.Author.Mention);
+                return;
             }
+
+            // Check if the message has the proper prefix
+            if (!(message.HasCharPrefix('!', ref argPos) || message.HasMentionPrefix(client.CurrentUser, ref argPos)))
+                return;
+
+            // Create a command context
+            var context = new CommandContext(client, message);
+
+            var result = await commands.ExecuteAsync(context, argPos);
+            if (!result.IsSuccess)
+                await context.Channel.SendMessageAsync(result.ErrorReason);
         }
 
         private Task Log(LogMessage msg)
