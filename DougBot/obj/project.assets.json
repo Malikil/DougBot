@@ -41,6 +41,20 @@
           "lib/netstandard1.3/Discord.Net.Core.dll": {}
         }
       },
+      "Discord.Net.Providers.WS4Net/2.0.0-beta": {
+        "type": "package",
+        "dependencies": {
+          "Discord.Net.Core": "2.0.0-beta",
+          "NETStandard.Library": "1.6.1",
+          "WebSocket4Net": "0.15.0"
+        },
+        "compile": {
+          "lib/netstandard1.3/Discord.Net.Providers.WS4Net.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/Discord.Net.Providers.WS4Net.dll": {}
+        }
+      },
       "Discord.Net.Rest/2.0.0-beta": {
         "type": "package",
         "dependencies": {
@@ -540,6 +554,25 @@
           }
         }
       },
+      "SuperSocket.ClientEngine.Core/0.8.0.13": {
+        "type": "package",
+        "dependencies": {
+          "System.Collections.Specialized": "4.3.0",
+          "System.Linq": "4.3.0",
+          "System.Net.NameResolution": "4.3.0",
+          "System.Net.Security": "4.3.0",
+          "System.Net.Sockets": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Runtime.InteropServices": "4.3.0",
+          "System.Security.Cryptography.X509Certificates": "4.3.0"
+        },
+        "compile": {
+          "lib/netstandard1.3/SuperSocket.ClientEngine.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/SuperSocket.ClientEngine.dll": {}
+        }
+      },
       "System.Collections/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -620,7 +653,7 @@
           "System.Threading": "4.3.0"
         },
         "compile": {
-          "ref/netstandard1.3/_._": {}
+          "ref/netstandard1.3/System.Collections.Specialized.dll": {}
         },
         "runtime": {
           "lib/netstandard1.3/System.Collections.Specialized.dll": {}
@@ -948,7 +981,7 @@
           "runtime.native.System": "4.3.0"
         },
         "compile": {
-          "ref/netstandard1.3/_._": {}
+          "ref/netstandard1.3/System.Net.NameResolution.dll": {}
         },
         "runtimeTargets": {
           "runtimes/unix/lib/netstandard1.3/System.Net.NameResolution.dll": {
@@ -1006,7 +1039,7 @@
           "runtime.native.System.Security.Cryptography.OpenSsl": "4.3.0"
         },
         "compile": {
-          "ref/netstandard1.3/_._": {}
+          "ref/netstandard1.3/System.Net.Security.dll": {}
         },
         "runtimeTargets": {
           "runtimes/unix/lib/netstandard1.6/System.Net.Security.dll": {
@@ -1030,7 +1063,7 @@
           "System.Threading.Tasks": "4.3.0"
         },
         "compile": {
-          "ref/netstandard1.3/_._": {}
+          "ref/netstandard1.3/System.Net.Sockets.dll": {}
         }
       },
       "System.Net.WebHeaderCollection/4.3.0": {
@@ -1273,7 +1306,7 @@
           "System.Runtime.Handles": "4.3.0"
         },
         "compile": {
-          "ref/netcoreapp1.1/_._": {}
+          "ref/netcoreapp1.1/System.Runtime.InteropServices.dll": {}
         }
       },
       "System.Runtime.Numerics/4.3.0": {
@@ -1561,7 +1594,7 @@
           "System.Runtime": "4.3.0"
         },
         "compile": {
-          "ref/netstandard1.0/_._": {}
+          "ref/netstandard1.0/System.Security.Principal.dll": {}
         },
         "runtime": {
           "lib/netstandard1.0/System.Security.Principal.dll": {}
@@ -1628,7 +1661,7 @@
           "System.Runtime": "4.3.0"
         },
         "compile": {
-          "ref/netcoreapp1.1/_._": {}
+          "ref/netcoreapp1.1/System.Text.RegularExpressions.dll": {}
         },
         "runtime": {
           "lib/netstandard1.6/System.Text.RegularExpressions.dll": {}
@@ -1693,7 +1726,7 @@
           "System.Runtime": "4.3.0"
         },
         "compile": {
-          "ref/netstandard1.2/_._": {}
+          "ref/netstandard1.2/System.Threading.Timer.dll": {}
         }
       },
       "System.Xml.ReaderWriter/4.3.0": {
@@ -1742,6 +1775,24 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XmlDocument.dll": {}
         }
+      },
+      "WebSocket4Net/0.15.0": {
+        "type": "package",
+        "dependencies": {
+          "SuperSocket.ClientEngine.Core": "0.8.0.13",
+          "System.Linq": "4.3.0",
+          "System.Net.NameResolution": "4.3.0",
+          "System.Net.Sockets": "4.3.0",
+          "System.Text.RegularExpressions": "4.3.0",
+          "System.Threading": "4.3.0",
+          "System.Threading.Timer": "4.3.0"
+        },
+        "compile": {
+          "lib/netstandard1.3/WebSocket4Net.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/WebSocket4Net.dll": {}
+        }
       }
     }
   },
@@ -1779,6 +1830,17 @@
         "lib/netstandard1.1/Discord.Net.Core.xml",
         "lib/netstandard1.3/Discord.Net.Core.dll",
         "lib/netstandard1.3/Discord.Net.Core.xml"
+      ]
+    },
+    "Discord.Net.Providers.WS4Net/2.0.0-beta": {
+      "sha512": "1SKUScnl1fHTk54ExtBJ2OoSdK5xA5vJZklIxs2MeUeZTFVYxKp9YyrPBRhIYFHvuyqYYiJ9qsVjF6crfzSNJQ==",
+      "type": "package",
+      "path": "discord.net.providers.ws4net/2.0.0-beta",
+      "files": [
+        "discord.net.providers.ws4net.2.0.0-beta.nupkg.sha512",
+        "discord.net.providers.ws4net.nuspec",
+        "lib/netstandard1.3/Discord.Net.Providers.WS4Net.dll",
+        "lib/netstandard1.3/Discord.Net.Providers.WS4Net.xml"
       ]
     },
     "Discord.Net.Rest/2.0.0-beta": {
@@ -2624,6 +2686,21 @@
         "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
         "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.nuspec",
         "runtimes/ubuntu.16.10-x64/native/System.Security.Cryptography.Native.OpenSsl.so"
+      ]
+    },
+    "SuperSocket.ClientEngine.Core/0.8.0.13": {
+      "sha512": "FATcQa1QXsb1aUpXyD323FYqA5UGZZcylVXQK3j2Y6rJpKoi9AYmkckLHnoGp2HYs1jqXcm+7W7jBb8yA6QdmQ==",
+      "type": "package",
+      "path": "supersocket.clientengine.core/0.8.0.13",
+      "files": [
+        "lib/net20/SuperSocket.ClientEngine.dll",
+        "lib/net35-client/SuperSocket.ClientEngine.dll",
+        "lib/net40-client/SuperSocket.ClientEngine.dll",
+        "lib/net45/SuperSocket.ClientEngine.dll",
+        "lib/netstandard1.3/SuperSocket.ClientEngine.dll",
+        "lib/sl50/SuperSocket.ClientEngine.dll",
+        "supersocket.clientengine.core.0.8.0.13.nupkg.sha512",
+        "supersocket.clientengine.core.nuspec"
       ]
     },
     "System.Collections/4.3.0": {
@@ -5887,11 +5964,27 @@
         "system.xml.xmldocument.4.3.0.nupkg.sha512",
         "system.xml.xmldocument.nuspec"
       ]
+    },
+    "WebSocket4Net/0.15.0": {
+      "sha512": "ln4cE+dTNyTpJWKZa2lesgMTevTx1YWMkSGL2LZW4pKSvgacufum70dfMYRCKylnmb17cmaslwoIbQlrk3i2NQ==",
+      "type": "package",
+      "path": "websocket4net/0.15.0",
+      "files": [
+        "lib/net20/WebSocket4Net.dll",
+        "lib/net35/WebSocket4Net.dll",
+        "lib/net40/WebSocket4Net.dll",
+        "lib/net45/WebSocket4Net.dll",
+        "lib/netstandard1.3/WebSocket4Net.dll",
+        "lib/sl50/WebSocket4Net.dll",
+        "websocket4net.0.15.0.nupkg.sha512",
+        "websocket4net.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.0": [
       "Discord.Net >= 2.0.0-beta",
+      "Discord.Net.Providers.WS4Net >= 2.0.0-beta",
       "Microsoft.NETCore.App >= 2.0.0"
     ]
   },
@@ -5941,6 +6034,10 @@
       "netcoreapp2.0": {
         "dependencies": {
           "Discord.Net": {
+            "target": "Package",
+            "version": "[2.0.0-beta, )"
+          },
+          "Discord.Net.Providers.WS4Net": {
             "target": "Package",
             "version": "[2.0.0-beta, )"
           },
