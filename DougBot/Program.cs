@@ -4,6 +4,7 @@ using Discord.Net.Providers.WS4Net;
 using System;
 using System.IO;
 using System.Threading.Tasks;
+using Discord.Commands;
 
 namespace DougBot
 {
@@ -11,8 +12,6 @@ namespace DougBot
     {
         public static void Main(string[] args)
             => new Program().Start().GetAwaiter().GetResult();
-
-        private ISocketMessageChannel outchannel;
 
         public async Task Start()
         {
@@ -36,8 +35,6 @@ namespace DougBot
                 string cmd = Console.ReadLine();
                 if (cmd.ToLower().Equals("quit") || cmd.ToLower().Equals("exit"))
                     break;
-                else if (outchannel != null)
-                    await outchannel.SendMessageAsync(cmd);
             }
             await client.StopAsync();
             await client.LogoutAsync();
@@ -48,11 +45,6 @@ namespace DougBot
             if (message.Content.Equals("!ping"))
             {
                 await message.Channel.SendMessageAsync("Pong!");
-            }
-            else if (message.Content.Equals("!talkhere"))
-            {
-                outchannel = message.Channel;
-                await outchannel.SendMessageAsync("ok");
             }
         }
 
