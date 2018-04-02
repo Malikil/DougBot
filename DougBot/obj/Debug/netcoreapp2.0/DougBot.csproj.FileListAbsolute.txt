@@ -1,0 +1,8 @@
+E:\Users\Eric\Documents\Visual Studio 2017\Projects\DougBot\DougBot\bin\Debug\netcoreapp2.0\DougBot.deps.json
+E:\Users\Eric\Documents\Visual Studio 2017\Projects\DougBot\DougBot\bin\Debug\netcoreapp2.0\DougBot.runtimeconfig.json
+E:\Users\Eric\Documents\Visual Studio 2017\Projects\DougBot\DougBot\bin\Debug\netcoreapp2.0\DougBot.runtimeconfig.dev.json
+E:\Users\Eric\Documents\Visual Studio 2017\Projects\DougBot\DougBot\bin\Debug\netcoreapp2.0\DougBot.dll
+E:\Users\Eric\Documents\Visual Studio 2017\Projects\DougBot\DougBot\obj\Debug\netcoreapp2.0\DougBot.csprojResolveAssemblyReference.cache
+E:\Users\Eric\Documents\Visual Studio 2017\Projects\DougBot\DougBot\obj\Debug\netcoreapp2.0\DougBot.csproj.CoreCompileInputs.cache
+E:\Users\Eric\Documents\Visual Studio 2017\Projects\DougBot\DougBot\obj\Debug\netcoreapp2.0\DougBot.AssemblyInfoInputs.cache
+E:\Users\Eric\Documents\Visual Studio 2017\Projects\DougBot\DougBot\obj\Debug\netcoreapp2.0\DougBot.AssemblyInfo.cs
