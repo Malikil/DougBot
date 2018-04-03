@@ -1,7 +1,4 @@
 ﻿using Discord.Commands;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DougBot
@@ -12,6 +9,12 @@ namespace DougBot
         public async Task Ping()
         {
             await base.ReplyAsync("Pong!");
+        }
+
+        [Command("dodb"), Summary("Executes code on the database")]
+        public async Task DoDb([Remainder]string arg)
+        {
+            new DatabaseHandler();
         }
     }
 }
