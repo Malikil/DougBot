@@ -6,25 +6,29 @@ using System.IO;
 using System.Threading.Tasks;
 using Discord.Commands;
 using System.Reflection;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace DougBot
 {
     class Program
     {
         public static void Main(string[] args)
-            => new Program().Start().GetAwaiter().GetResult();
+            => new Program().AsyncMain().GetAwaiter().GetResult();
 
         private DiscordSocketClient client;
         private CommandService commands;
+        private IServiceProvider services;
 
-        public async Task Start()
+        public async Task AsyncMain()
         {
             // Create private objects client object
             client = new DiscordSocketClient(new DiscordSocketConfig()
             {
+                LogLevel = LogSeverity.Verbose,
                 WebSocketProvider = WS4NetProvider.Instance
             });
             commands = new CommandService();
+            services = new ServiceCollection().BuildServiceProvider();
 
             // Set up logging and command handling
             client.Log += Log;
@@ -43,6 +47,7 @@ namespace DougBot
                 if (cmd.ToLower().Equals("quit") || cmd.ToLower().Equals("exit"))
                     break;
             }
+            DatabaseHandler.Instance().Disconnect();
             await client.StopAsync();
             await client.LogoutAsync();
         }
@@ -53,9 +58,6 @@ namespace DougBot
             SocketUserMessage message = messageParam as SocketUserMessage;
             if (message == null)
                 return;
-
-            // A number to track the end of the prefix
-            int argPos = 0;
             
             // If the user just pings the bot with no message body, ping them back
             if (message.Content.Substring(2).Equals(client.CurrentUser.Mention.Substring(3)))
@@ -63,6 +65,9 @@ namespace DougBot
                 await message.Channel.SendMessageAsync(message.Author.Mention);
                 return;
             }
+
+            // A number to track the end of the prefix
+            int argPos = 0;
 
             // Check if the message has the proper prefix
             if (!(message.HasCharPrefix('!', ref argPos) || message.HasMentionPrefix(client.CurrentUser, ref argPos)))
