@@ -13,17 +13,18 @@ namespace DougBot
     class Program
     {
         public static void Main(string[] args)
-            => new Program().Start().GetAwaiter().GetResult();
+            => new Program().AsyncMain().GetAwaiter().GetResult();
 
         private DiscordSocketClient client;
         private CommandService commands;
         private IServiceProvider services;
 
-        public async Task Start()
+        public async Task AsyncMain()
         {
             // Create private objects client object
             client = new DiscordSocketClient(new DiscordSocketConfig()
             {
+                LogLevel = LogSeverity.Verbose,
                 WebSocketProvider = WS4NetProvider.Instance
             });
             commands = new CommandService();
@@ -46,6 +47,7 @@ namespace DougBot
                 if (cmd.ToLower().Equals("quit") || cmd.ToLower().Equals("exit"))
                     break;
             }
+            DatabaseHandler.Instance().Disconnect();
             await client.StopAsync();
             await client.LogoutAsync();
         }
